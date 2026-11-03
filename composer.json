@@ -7,6 +7,7 @@
     "setasign/fpdi-tcpdf": "^2.3"
   },
   "config": {
+    "vendor-dir": "secure-pda-pdf-watermark/vendor",
     "optimize-autoloader": true,
     "sort-packages": true
   }
