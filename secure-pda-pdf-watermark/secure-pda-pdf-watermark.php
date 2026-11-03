@@ -36,7 +36,6 @@ function spdw_user_can_download( $attachment_id ): bool {
         return false;
     }
 
-    /*
     if ( ! class_exists( 'Pda_Gold_Functions' ) || ! class_exists( 'PDA_v3_Gold_Repository' ) ) {
         return false;
     }
@@ -56,7 +55,7 @@ function spdw_user_can_download( $attachment_id ): bool {
         error_log( 'Secure PDA PDF Watermark: PDA Gold permission check failed: ' . $exception->getMessage() );
         return false;
     }
-    */
+    
   return true;
 }
 
