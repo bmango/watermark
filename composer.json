@@ -1,0 +1,13 @@
+{
+  "name": "custom/secure-pda-pdf-watermark",
+  "description": "Personalised PDF downloads protected by PDA Gold permissions.",
+  "type": "wordpress-plugin",
+  "require": {
+    "php": ">=8.1",
+    "setasign/fpdi-tcpdf": "^2.3"
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
+}
