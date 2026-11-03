@@ -65,7 +65,7 @@ function spdw_shortcode( $atts ): string {
     $atts = shortcode_atts(
         array(
             'id'    => 0,
-            'label' => 'Download personalised PDF',
+            'label' => 'Download',
         ),
         $atts,
         'secure_pda_pdf'
