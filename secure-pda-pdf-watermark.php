@@ -36,11 +36,11 @@ function spdw_user_can_download( $attachment_id ): bool {
         return false;
     }
 
+    /*
     if ( ! class_exists( 'Pda_Gold_Functions' ) || ! class_exists( 'PDA_v3_Gold_Repository' ) ) {
         return false;
     }
-
-    /*
+    
     try {
         $repository = new PDA_v3_Gold_Repository();
 
@@ -136,6 +136,7 @@ function spdw_handle_download(): void {
     $attachment = get_post( $attachment_id );
     if ( ! $attachment || 'attachment' !== $attachment->post_type ) {
         spdw_abort( 'PDF attachment not found.', 404 );
+        spdw_abort( 'PDF attachment not found.', 404 );
     }
 
     $file_path = get_attached_file( $attachment_id );
@@ -213,12 +214,12 @@ function spdw_add_watermark( $pdf, float $page_width, float $page_height, string
     $watermark_text = "PERSONAL COPY\n" . $username . "\n" . $email . "\n" . $date;
 
     $pdf->SetTextColor( 145, 145, 145 );
-    $pdf->SetAlpha( 0.22 );
-    $pdf->SetFont( 'helvetica', 'B', 17 );
+    $pdf->SetAlpha( 0.3 );
+    $pdf->SetFont( 'helvetica', 'B', 24 );
     $pdf->StartTransform();
     $pdf->Rotate( 35, $centre_x, $centre_y );
-    $pdf->SetXY( $page_width * 0.08, $centre_y - 17 );
-    $pdf->MultiCell( $page_width * 0.84, 9, $watermark_text, 0, 'C', false, 1, '', '', true, 0, false, true, 36, 'M' );
+    $pdf->SetXY( $page_width * 0.06, $centre_y - 24 );
+    $pdf->MultiCell( $page_width * 0.84, 9, $watermark_text, 0, 'C', false, 1, '', '', true, 0, false, true, 55, 'M' );
     $pdf->StopTransform();
     $pdf->SetAlpha( 1 );
 }
