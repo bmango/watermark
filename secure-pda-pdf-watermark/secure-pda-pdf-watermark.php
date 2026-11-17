@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Secure PDA PDF Watermark
  * Description: Streams a personalised, watermarked PDF after checking PDA Gold access permissions.
- * Version: 1.0.1
+ * Version: 1.0.3
  * Requires at least: 6.0
  * Requires PHP: 8.1
- * Author: Custom
+ * Author: Ben Mango
  * Text Domain: secure-pda-pdf-watermark
  */
 
