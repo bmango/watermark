@@ -213,7 +213,7 @@ function spdw_add_watermark( $pdf, float $page_width, float $page_height, string
     $centre_x = $page_width / 2;
     $centre_y = $page_height / 2;
 
-    $watermark_text = "MEMBERS PERSONAL COPY\n" . $username . "\n" . $email . "\n" . $date;
+    $watermark_text = "Member's Personal Copy\n" . $username . "\n" . $email . "\n" . $date;
 
     $pdf->SetTextColor( 145, 145, 145 );
     $pdf->SetAlpha( 0.3 );
