@@ -93,7 +93,8 @@ function spdw_shortcode( $atts ): string {
         admin_url( 'admin-post.php' )
     );
 
-    return '<a class="spdw-download-link" href="' . esc_url( $url ) . '">' . esc_html( $atts['label'] ) . '</a>';
+    return '<a class="spdw-download-link wp-block-button__link has-text-color has-background" style="background-color:#ffcd00;color:#1f2a44" href="' . esc_url( $url ) . '">' . esc_html( $atts['label'] ) . '</a>';
+
 }
 add_shortcode( 'secure_pda_pdf', 'spdw_shortcode' );
 
