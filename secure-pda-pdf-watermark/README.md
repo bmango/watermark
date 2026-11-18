@@ -22,6 +22,12 @@ Optional. Display the WordPress username. Default: 1.
 show_date
 Optional. Display the download date. Default: 1.
 
+label
+Optional. The text that displays on the button. Default: Click here to download
+
+open
+Optional. Open the PDF in a new tab with value = "new". Default: Download PDF.
+
 REQUIREMENTS
 
 - WordPress
