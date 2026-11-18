@@ -217,7 +217,7 @@ function spdw_add_watermark( $pdf, float $page_width, float $page_height, string
 
     $pdf->SetTextColor( 145, 145, 145 );
     $pdf->SetAlpha( 0.3 );
-    $pdf->SetFont( 'helvetica', 'B', 24 );
+    $pdf->SetFont( 'helvetica', 'B', 18 );
     $pdf->StartTransform();
     $pdf->Rotate( 35, $centre_x, $centre_y );
     $pdf->SetXY( $page_width * 0.06, $centre_y - 24 );
