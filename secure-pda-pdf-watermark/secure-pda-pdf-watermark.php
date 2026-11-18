@@ -65,6 +65,7 @@ function spdw_shortcode( $atts ): string {
         array(
             'id'    => 0,
             'label' => 'Click here to download',
+            'open'  => 'download',
         ),
         $atts,
         'secure_pda_pdf'
@@ -84,17 +85,23 @@ function spdw_shortcode( $atts ): string {
         return '<p class="spdw-no-access">You do not have permission to download this PDF.</p>';
     }
 
+    // 'download' is the default; use open="new" to display the PDF in a new tab.
+    $open_in_new_tab = ( 'new' === strtolower( sanitize_text_field( $atts['open'] ) ) );
+
     $url = add_query_arg(
         array(
             'action'        => 'spdw_download',
             'attachment_id' => $attachment_id,
+            'view'          => $open_in_new_tab ? 'inline' : 'download',
             '_wpnonce'      => wp_create_nonce( 'spdw_download_' . $attachment_id ),
         ),
         admin_url( 'admin-post.php' )
     );
 
+    $target_attributes = $open_in_new_tab ? ' target="_blank" rel="noopener noreferrer"' : '';
+
     return '<div class="wp-block-button">
-            <a class="spdw-download-link wp-block-button__link has-text-color has-background" style="background-color:#ffcd00;color:#1f2a44" href="' . esc_url( $url ) . '">' . esc_html( $atts['label'] ) . '</a>
+            <a class="spdw-download-link wp-block-button__link has-text-color has-background" style="background-color:#ffcd00;color:#1f2a44" href="' . esc_url( $url ) . '"' . $target_attributes . '>' . esc_html( $atts['label'] ) . '</a>
             </div>';
 
 }
@@ -201,7 +208,14 @@ function spdw_handle_download(): void {
 
     nocache_headers();
     header( 'Content-Type: application/pdf' );
-    header( 'Content-Disposition: attachment; filename="' . $filename . '"; filename*=UTF-8\'\'' . rawurlencode( $filename ) );
+
+    // Only allow the two supported response modes; default safely to download.
+    $disposition = (
+        isset( $_GET['view'] )
+        && 'inline' === sanitize_key( wp_unslash( $_GET['view'] ) )
+    ) ? 'inline' : 'attachment';
+
+    header( 'Content-Disposition: ' . $disposition . '; filename="' . $filename . '"; filename*=UTF-8\'\'' . rawurlencode( $filename ) );
     header( 'Content-Length: ' . strlen( $pdf_bytes ) );
     header( 'X-Content-Type-Options: nosniff' );
     echo $pdf_bytes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Binary PDF output.
